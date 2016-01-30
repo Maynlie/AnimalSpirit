@@ -11,6 +11,10 @@ public class DrawRitual : MonoBehaviour {
     public bool _drawDown = false;
     public bool _drawUp = false;
     public Camera _gameCam;
+    public int _stateNumberAnimal;
+    public int _checkMode;
+    //public GameObject perso;
+    //public PersoManager persoManager;
 
 
     //public GameObject objectLineRender;
@@ -28,6 +32,8 @@ public class DrawRitual : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //lineRender = objectLineRender.GetComponent<LineRenderer>();
+        //persoManager = perso.GetComponent<PersoManager>();
+        _checkMode = 1;
 	
 	}
 	
@@ -65,7 +71,7 @@ public class DrawRitual : MonoBehaviour {
         }
         if (Input.GetMouseButtonUp(0)&& _onClick ||_timePowerDraw>= _timeCDPowerDraw)
         {
-            int checkDebug = 0;
+            //int checkDebug = 0;
             if (m_posList[1].y > m_posList[0].y)
             {
                 _drawUp = true;
@@ -81,14 +87,14 @@ public class DrawRitual : MonoBehaviour {
                 {
                     _drawUp = true;
                     _drawDown = false;
-                    checkDebug++;
-                    checkDebug++;
+                    _stateNumberAnimal++;
+                    _stateNumberAnimal++;
                 }
                 if (m_posList[i].y < m_posList[i - 1].y && _drawUp == true)
                 {
                     _drawDown = true;
                     _drawUp = false;
-                    checkDebug++;
+                    _stateNumberAnimal++;
                 }
                 /*if(_drawUp == true && 80<angleBetweenPoint && angleBetweenPoint <100)
                 {
@@ -102,9 +108,22 @@ public class DrawRitual : MonoBehaviour {
             }
             _drawUp = false;
             _drawDown = false;
-            
-            Debug.Log(checkDebug);
-            checkDebug = 0;
+
+            if(_stateNumberAnimal == 1)
+            {
+                _checkMode = 1;
+            }
+            if (_stateNumberAnimal == 3 || _stateNumberAnimal == 4)
+            {
+                _checkMode = 2;
+            }
+            if (_stateNumberAnimal == 6 || _stateNumberAnimal == 7)
+            {
+                _checkMode = 3;
+            }
+
+            Debug.Log(_stateNumberAnimal);
+            _stateNumberAnimal = 0;
             m_posList.Clear();
             numberOfLinePoints = 0;
             lineRender.SetVertexCount(0);

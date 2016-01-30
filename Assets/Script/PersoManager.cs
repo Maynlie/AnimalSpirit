@@ -5,6 +5,11 @@ public class PersoManager : MonoBehaviour {
     public float jumpHeight;
     public float timeJmpStart;
     public int mode;
+
+    public GameObject renardSprite;
+    public GameObject drawLine;
+     DrawRitual drawRitual;
+
     bool jumping;
     bool ballmode;
     float rushTime;
@@ -24,19 +29,24 @@ public class PersoManager : MonoBehaviour {
         ballmode = false;
         direction = 1;
         fall = rigid.velocity.y;
+        mode = 1;
+
+        drawRitual = drawLine.GetComponent<DrawRitual>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
         float translateX = Input.GetAxis("Horizontal")*speed;
         float translateY = 0.0f;
+        if (translateX < 0) direction = 1;
+        else direction = -1;
         if (mode == 2) translateY = Input.GetAxis("Vertical") * speed;
         if (mode == 3)
         {
             if (translateX != 0.0f)
             {
-                if (translateX < 0) direction = 1;
-                else direction = -1;
+                
                 ballmode = true;
                 if (rushTime == 0.0f) rushTime = Time.time;
             }
@@ -84,7 +94,7 @@ public class PersoManager : MonoBehaviour {
         
         if (GetComponent<BoxCollider2D>().IsTouching(GameObject.Find("Sol").GetComponent<BoxCollider2D>()) && !superjump)
         {
-            Debug.Log("Au sol");
+            //Debug.Log("Au sol");
             grounded = true;
             jumping = false;
             if (mode == 2)
@@ -119,7 +129,19 @@ public class PersoManager : MonoBehaviour {
             rigid.velocity = new Vector2(direction*speed*(rushTime-Time.time), rigid.velocity.y);
         else
             rigid.velocity = new Vector2(translateX, rigid.velocity.y);
-        //transform.Translate(translate * Time.deltaTime, 0, 0);
-
+       
+        if (drawRitual._checkMode == 1)
+        {
+            mode = 1;
+        }
+        if (drawRitual._checkMode == 2)
+        {
+            mode = 2;
+        }
+        if (drawRitual._checkMode == 3)
+        {
+            mode = 3;
+        }
     }
+
 }
