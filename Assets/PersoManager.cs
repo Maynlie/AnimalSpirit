@@ -4,6 +4,7 @@ public class PersoManager : MonoBehaviour {
     public float speed;
     public float jumpHeight;
     public float timeJmpStart;
+    public int mode;
     bool jumping;
     float Jumptime;
     Rigidbody2D rigid;
