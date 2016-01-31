@@ -56,7 +56,7 @@ public class DrawRitual : MonoBehaviour {
             _timePowerDraw += Time.deltaTime;
             numberOfLinePoints++;
             lineRender.SetVertexCount(numberOfLinePoints);
-            lineRender.SetPosition(numberOfLinePoints - 1, new Vector3 (mousePosWorld.x, mousePosWorld.y-1,mousePosWorld.z+10));
+            lineRender.SetPosition(numberOfLinePoints - 1, new Vector3 (mousePosWorld.x, mousePosWorld.y,mousePosWorld.z+10));
             if (m_frameTime >= _timeCheckMousePosition)
             {
                 m_mousePosEachFrame = mousePosWorld;
@@ -82,7 +82,7 @@ public class DrawRitual : MonoBehaviour {
             }
             for (int i = 1; i < m_posList.Count; i++)
             {
-                float angleBetweenPoint = Vector3.Angle(m_posList[i - 1], m_posList[i]);
+                //float angleBetweenPoint = Vector3.Angle(m_posList[i - 1], m_posList[i]);
                 if (m_posList[i].y > m_posList[i - 1].y && _drawDown == true)
                 {
                     _drawUp = true;
@@ -122,7 +122,7 @@ public class DrawRitual : MonoBehaviour {
                 _checkMode = 3;
             }
 
-            Debug.Log(_stateNumberAnimal);
+            //Debug.Log(_stateNumberAnimal);
             _stateNumberAnimal = 0;
             m_posList.Clear();
             numberOfLinePoints = 0;
