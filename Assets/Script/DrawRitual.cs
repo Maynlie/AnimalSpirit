@@ -117,7 +117,7 @@ public class DrawRitual : MonoBehaviour {
             {
                 _checkMode = 2;
             }
-            if (_stateNumberAnimal == 6 || _stateNumberAnimal == 7)
+            if (_stateNumberAnimal == 5 || _stateNumberAnimal == 6 || _stateNumberAnimal == 7)
             {
                 _checkMode = 3;
             }

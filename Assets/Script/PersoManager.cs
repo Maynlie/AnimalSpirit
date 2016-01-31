@@ -6,9 +6,9 @@ public class PersoManager : MonoBehaviour {
     public float timeJmpStart;
     public int mode;
 
-    public GameObject renardSprite;
+    
     public GameObject drawLine;
-     DrawRitual drawRitual;
+    DrawRitual drawRitual;
 
     bool jumping;
     bool ballmode;
@@ -19,6 +19,31 @@ public class PersoManager : MonoBehaviour {
     int direction;
     int Left;
     float fall;
+
+    Animator animRenard;
+    Animator animGecko;
+    Animator animTatou;
+    public GameObject spriteAnimRenard;
+    public GameObject spriteAnimGecko;
+    public GameObject spriteAnimTatou;
+    int jumpHash = Animator.StringToHash("onJump");
+    int returnHash = Animator.StringToHash("Return");
+    int walkStateHash = Animator.StringToHash("Base Layer.Walk");
+    int startMoveHash = Animator.StringToHash("startMove");
+    public bool onRight;
+    public bool onLeft;
+    float lastTranslateX;
+    bool tatooRolling;
+
+    public GameObject Renard;
+    public GameObject Gecko;
+    public GameObject Tatou;
+    public BoxCollider2D colliderPerso;
+    public Vector2 sizeColRenard;
+    public Vector2 sizeColGecko;
+    public Vector2 sizeColTatou;
+
+
     // Use this for initialization
     void Start () {
         jumping = false;
@@ -32,15 +57,112 @@ public class PersoManager : MonoBehaviour {
         mode = 1;
 
         drawRitual = drawLine.GetComponent<DrawRitual>();
+        animRenard = spriteAnimRenard.GetComponent<Animator>();
+        animGecko = spriteAnimGecko.GetComponent<Animator>();
+        animTatou = spriteAnimTatou.GetComponent<Animator>();
+
+        onRight = true;
+        onLeft = false;
+        tatooRolling = false;
+
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        if (drawRitual._checkMode == 1)
+        {
+            mode = 1;
+            Renard.SetActive(true);
+            Gecko.SetActive(false);
+            Tatou.SetActive(false);
+            colliderPerso.size = sizeColRenard;
+
+        }
+        if (drawRitual._checkMode == 2)
+        {
+            mode = 2;
+            Renard.SetActive(false);
+            Gecko.SetActive(true);
+            Tatou.SetActive(false);
+            colliderPerso.size = sizeColGecko;
+        }
+        if (drawRitual._checkMode == 3)
+        {
+            mode = 3;
+            Renard.SetActive(false);
+            Gecko.SetActive(false);
+            Tatou.SetActive(true);
+            colliderPerso.size = sizeColTatou;
+        }
+
         float translateX = Input.GetAxis("Horizontal")*speed;
-        float translateY = 0.0f;
         if (translateX < 0) direction = 1;
         else direction = -1;
+        //Debug.Log(translateX);
+        
+
+        float translateY = 0.0f;
+        if (direction ==1 && onRight)
+        {
+            if (mode == 1)
+                spriteAnimRenard.transform.localScale = new Vector3(spriteAnimRenard.transform.localScale.x, spriteAnimRenard.transform.localScale.y, spriteAnimRenard.transform.localScale.z);
+            if (mode == 2)
+                spriteAnimGecko.transform.localScale = new Vector3(spriteAnimGecko.transform.localScale.x, spriteAnimGecko.transform.localScale.y, spriteAnimGecko.transform.localScale.z);
+            if (mode == 3)
+                spriteAnimTatou.transform.localScale = new Vector3(spriteAnimTatou.transform.localScale.x, spriteAnimTatou.transform.localScale.y, spriteAnimTatou.transform.localScale.z);
+            onLeft = true;
+            onRight = false;
+            //anim.SetTrigger(returnHash);
+        }
+        if (direction ==-1 && onLeft)
+        {
+            onLeft = false;
+            onRight = true;
+            if(mode == 1)
+                spriteAnimRenard.transform.localScale = new Vector3(-spriteAnimRenard.transform.localScale.x, spriteAnimRenard.transform.localScale.y, spriteAnimRenard.transform.localScale.z);
+            if (mode == 2)
+                spriteAnimGecko.transform.localScale = new Vector3(-spriteAnimGecko.transform.localScale.x, spriteAnimGecko.transform.localScale.y, spriteAnimGecko.transform.localScale.z);
+            if (mode == 3)
+                spriteAnimTatou.transform.localScale = new Vector3(-spriteAnimTatou.transform.localScale.x, spriteAnimTatou.transform.localScale.y, spriteAnimTatou.transform.localScale.z);
+            //anim.SetTrigger(returnHash);
+        }
+        //if(Input.getKey)
+        
+        if(translateX != 0)
+        {
+            if (mode == 1)
+                animRenard.SetBool("onMove", true);
+            if (mode == 2)
+            {
+                animGecko.SetBool("onMove", true);
+            }
+            if (mode == 3)
+            {
+                animTatou.SetBool("startMove", true);
+                tatooRolling = true;
+            }
+        }
+        if (translateX == 0)
+        {
+            if (mode == 1)
+                animRenard.SetBool("onMove", false);
+            if (mode == 2)
+            {
+                animGecko.SetBool("onMove", false);
+            }
+            if (mode == 3)
+            {
+                animTatou.SetBool("startMove", false);
+                tatooRolling = false;
+            }
+
+        }
+
+        //Debug.Log(translateX);
+        lastTranslateX = translateX;
+        
         if (mode == 2) translateY = Input.GetAxis("Vertical") * speed;
         if (mode == 3)
         {
@@ -73,6 +195,8 @@ public class PersoManager : MonoBehaviour {
         }
         if ((Input.GetKeyDown(KeyCode.Space)))
         {
+            
+            animRenard.SetTrigger(jumpHash);
             if (Jumptime == 0.0f && mode == 1 && !jumping) Jumptime = Time.time;
             else if (mode == 2)
             {
@@ -89,6 +213,7 @@ public class PersoManager : MonoBehaviour {
                 jump = 3;
                 jumping = true;
                 rigid.AddForce(new Vector2(0, jumpHeight * jump));
+                
             }
         }
         
@@ -130,18 +255,7 @@ public class PersoManager : MonoBehaviour {
         else
             rigid.velocity = new Vector2(translateX, rigid.velocity.y);
        
-        if (drawRitual._checkMode == 1)
-        {
-            mode = 1;
-        }
-        if (drawRitual._checkMode == 2)
-        {
-            mode = 2;
-        }
-        if (drawRitual._checkMode == 3)
-        {
-            mode = 3;
-        }
+        
     }
 
 }

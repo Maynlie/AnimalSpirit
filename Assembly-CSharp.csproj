@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\AnimController.cs" />
      <Compile Include="Assets\Script\Collectible.cs" />
      <Compile Include="Assets\Script\DrawRitual.cs" />
      <Compile Include="Assets\Script\PersoManager.cs" />
