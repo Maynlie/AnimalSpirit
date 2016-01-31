@@ -28,7 +28,22 @@ public class Collectible : MonoBehaviour {
                 manaCollecté++;
             }
         }
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Boutton");
+            if (Physics.Raycast(mousePosWorld,Vector3.forward, out hit))
+            {
+                Debug.Log("Totem");
+
+                if (hit.collider.tag == "TRenard" && manaCollecté>0)//&& NbCharge < ChargeMax
+                {
+                    Debug.Log(hit.ToString());
+                    hit.collider.gameObject.SendMessage("ChargeUp");
+                    //int max = hit.collider.GetComponent<>(TotemManager).ChargesMax;
+                    //NbCharge++
+                }
+            }
+        }
 
     }
 }

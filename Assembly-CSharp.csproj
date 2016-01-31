@@ -50,6 +50,7 @@
      <Compile Include="Assets\Script\DrawRitual.cs" />
      <Compile Include="Assets\Script\PersoManager.cs" />
      <Compile Include="Assets\Script\ScrollScript.cs" />
+     <Compile Include="Assets\TotemManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

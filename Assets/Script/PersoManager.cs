@@ -36,14 +36,15 @@ public class PersoManager : MonoBehaviour {
     public GameObject spriteAnimGecko;
     public GameObject spriteAnimTatou;
     int jumpHash = Animator.StringToHash("onJump");
-    int returnHash = Animator.StringToHash("Return");
-    int walkStateHash = Animator.StringToHash("Base Layer.Walk");
-    int startMoveHash = Animator.StringToHash("startMove");
+    //int returnHash = Animator.StringToHash("Return");
+    //int walkStateHash = Animator.StringToHash("Base Layer.Walk");
+    //int startMoveHash = Animator.StringToHash("startMove");
     public bool onRight;
     public bool onLeft;
-    float lastTranslateX;
+    //float lastTranslateX;
     bool tatooRolling;
-
+    bool LeftEnabled = false;
+    bool RightEnabled = false;
     public GameObject Renard;
     public GameObject Gecko;
     public GameObject Tatou;
@@ -91,7 +92,12 @@ public class PersoManager : MonoBehaviour {
             if (coll.contacts[i].normal.y > 0) Ground = true;
         }
         if (coll.gameObject.tag == "destructible")
-                destructible = true;
+        {
+            destructible = true;
+            if ((Time.time - rushTime > 0.5f && rushTime != 0.0f) || Superballmode)
+                Destroy(coll.gameObject);
+        }
+                
     }
 
     void OnCollisionExit2D(Collision2D coll)
@@ -123,16 +129,24 @@ public class PersoManager : MonoBehaviour {
             translateY = Input.GetAxis("Vertical") * speed;
         }
 
-        if (drawRitual._checkMode == 1)
+        if (drawRitual._checkMode == 1 && mode != 1)
         {
             mode = 1;
             Renard.SetActive(true);
             Gecko.SetActive(false);
             Tatou.SetActive(false);
             colliderPerso.size = sizeColRenard;
+            rigid.gravityScale = 1.0f;
+            if (p == PositionGecko.Ciel)
+                transform.Rotate(0, 0, -180);
+            if (p == PositionGecko.murG)
+                transform.Rotate(0, 0, 90);
+            if (p == PositionGecko.murD)
+                transform.Rotate(0, 0, -90);
+            p = PositionGecko.Sol;
 
         }
-        if (drawRitual._checkMode == 2)
+        if (drawRitual._checkMode == 2 && mode != 2)
         {
             mode = 2;
             Renard.SetActive(false);
@@ -140,18 +154,22 @@ public class PersoManager : MonoBehaviour {
             Tatou.SetActive(false);
             colliderPerso.size = sizeColGecko;
         }
-        if (drawRitual._checkMode == 3)
+        if (drawRitual._checkMode == 3 && mode != 3)
         {
             mode = 3;
             Renard.SetActive(false);
             Gecko.SetActive(false);
             Tatou.SetActive(true);
             colliderPerso.size = sizeColTatou;
+            rigid.gravityScale = 1.0f;
+            if (p == PositionGecko.Ciel)
+                transform.Rotate(0, 0, -180);
+            if (p == PositionGecko.murG)
+                transform.Rotate(0, 0, 90);
+            if (p == PositionGecko.murD)
+                transform.Rotate(0, 0, -90);
+            p = PositionGecko.Sol;
         }
-
-        if (translateX < 0) direction = 1;
-        else direction = -1;
-        //Debug.Log(translateX);
 
 
         if (direction == 1 && onRight)
@@ -211,7 +229,7 @@ public class PersoManager : MonoBehaviour {
         }
 
         //Debug.Log(translateX);
-        lastTranslateX = translateX;
+        //lastTranslateX = translateX;
 
         if (mode == 2) translateY = Input.GetAxis("Vertical") * speed;
         if (mode == 3)
@@ -243,6 +261,13 @@ public class PersoManager : MonoBehaviour {
                 escalade = -1;
                 rigid.gravityScale = 10.0f;
                 falling = true;
+                if(p == PositionGecko.Ciel)
+                    transform.Rotate(0, 0, -180);
+                if(p == PositionGecko.murG)
+                    transform.Rotate(0,0,90);
+                if (p == PositionGecko.murD)
+                    transform.Rotate(0,0,-90);
+                p = PositionGecko.Sol;
             }
             if (mode == 3 && !Ground) Superballmode = true;
         }
@@ -288,26 +313,93 @@ public class PersoManager : MonoBehaviour {
         //Si Sol+MurG
         if (WallLeft && Ground && mode == 2)
         {
-            Debug.Log("Interface W/G");
             if (translateY > 0 && p == PositionGecko.Sol)//Si on monte
             {
-                Debug.Log("G->W");
                 transform.Rotate(0, 0, -90.0f);
-                transform.Translate(-1f, 0, 0);
+                //transform.Translate(1.5f, 0, 0);
                 p = PositionGecko.murG;
             }
             else if (translateX > 0 && p == PositionGecko.murG)//Si on va droite
             {
-                Debug.Log("W->G");
                 p = PositionGecko.Sol;
                 transform.Rotate(0, 0, 90.0f);
                 transform.Translate(0, -1f, 0);
             }
         }
-        if (mode == 2)
+        if(WallRight && Ground && mode == 2)
         {
-            if (escalade == -1) translateY = 0.0f;
-            if (rigid.gravityScale != 1.0f && !Ground && !Sky) translateX = 0.0f;
+            Debug.Log("Interface G/R");
+            if (translateY > 0 && p == PositionGecko.Sol)//Si on monte
+            {
+                Debug.Log("G->R");
+                transform.Rotate(0, 0, 90.0f);
+                transform.Translate(-0.5f, 0, 0);
+                p = PositionGecko.murD;
+            }
+            else if (translateX < 0 && p == PositionGecko.murD)//Si on va droite
+            {
+                Debug.Log("R->G");
+                p = PositionGecko.Sol;
+                transform.Rotate(0, 0, -90.0f);
+                transform.Translate(0, -1f, 0);
+            }
+        }
+        if (WallRight && Sky && mode == 2)
+        {
+            Debug.Log("Interface C/R");
+            if (translateY < 0 && p == PositionGecko.Ciel)//Si on monte
+            {
+                Debug.Log("C->R");
+                transform.Rotate(0, 0, -90.0f);
+                //transform.Translate(-0.5f, 0, 0);
+                p = PositionGecko.murD;
+            }
+            else if (translateX < 0 && p == PositionGecko.murD)//Si on va droite
+            {
+                Debug.Log("R->C");
+                p = PositionGecko.Ciel;
+                transform.Rotate(0, 0, 90.0f);
+                transform.Translate(0.1f, 0.5f, 0);
+            }
+        }
+        if (WallLeft && Sky && mode == 2)
+        {
+            Debug.Log("Interface C/L");
+            if (translateY < 0 && p == PositionGecko.Ciel)//Si on monte
+            {
+                Debug.Log("C->L");
+                transform.Rotate(0, 0, 90.0f);
+                //transform.Translate(-0.5f, 0, 0);
+                p = PositionGecko.murG;
+            }
+            else if (translateX > 0 && p == PositionGecko.murG)//Si on va droite
+            {
+                Debug.Log("L->C");
+                p = PositionGecko.Ciel;
+                transform.Rotate(0, 0, -90.0f);
+                //transform.Translate(0, 1.0f, 0);
+            }
+        }
+        /*if(p == PositionGecko.murG && !WallLeft)
+            LeftEnabled = true;
+        if (p == PositionGecko.murD && !WallRight)
+            RightEnabled = true;*/
+            if (mode == 2)
+        {
+            if (escalade == -1 || LeftEnabled || RightEnabled) translateY = 0.0f;
+            if (rigid.gravityScale != 1.0f && !Ground && !Sky)
+            {
+                if(LeftEnabled && translateX<0)
+                {
+                    transform.Rotate(0,0,90);
+                }
+                else if (LeftEnabled && translateX>0)
+                {
+                    transform.Rotate(0, -90, 0);
+                }
+                else
+                    translateX = 0.0f;
+            }
             else if (Ground) fall = rigid.velocity.y;
             if (fall > 0) fall = -fall;
             rigid.velocity = new Vector2(translateX, translateY * escalade + fall);
@@ -316,20 +408,5 @@ public class PersoManager : MonoBehaviour {
             rigid.velocity = new Vector2(direction * speed * 2, rigid.velocity.y);
         else if (!Superballmode)
             rigid.velocity = new Vector2(translateX, rigid.velocity.y);
-
-        if (drawRitual._checkMode == 1 && mode != 1)
-        {
-            mode = 1;
-            rigid.gravityScale = 1.0f;
-        }
-        if (drawRitual._checkMode == 2 && mode != 2)
-        {
-            mode = 2;
-        }
-        if (drawRitual._checkMode == 3 && mode != 3)
-        {
-            mode = 3;
-            rigid.gravityScale = 1.0f;
-        }
     }
 }
