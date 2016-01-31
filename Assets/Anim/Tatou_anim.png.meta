@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: 6d07f74cc96e180429790379f456789e
+timeCreated: 1454198356
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tatou_anim_0
+    21300002: Tatou_anim_1
+    21300004: Tatou_anim_2
+    21300006: Tatou_anim_3
+    21300008: Tatou_anim_4
+    21300010: Tatou_anim_5
+    21300012: Tatou_anim_6
+    21300014: Tatou_anim_7
+    21300016: Tatou_anim_8
+    21300018: Tatou_anim_9
+    21300020: Tatou_anim_10
+    21300022: Tatou_anim_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Tatou_anim_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 457
+        width: 206
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -54, y: 40}
+        - {x: -103, y: 10}
+        - {x: -103, y: -16}
+        - {x: -97, y: -32}
+        - {x: -69, y: -40}
+        - {x: 91, y: -40}
+        - {x: 103, y: -29}
+        - {x: 103, y: 40}
+    - name: Tatou_anim_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 459
+        width: 192
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: 39.5}
+        - {x: -13, y: 39.5}
+        - {x: -35, y: 31.5}
+        - {x: -96, y: 9.5}
+        - {x: -96, y: -20.5}
+        - {x: -59, y: -39.5}
+        - {x: 96, y: -39.5}
+        - {x: 96, y: -5.5}
+        - {x: 74, y: 30.5}
+    - name: Tatou_anim_2
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 458
+        width: 153
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -58.5, y: 43}
+        - {x: -76.5, y: 36}
+        - {x: -76.5, y: -27}
+        - {x: -35.5, y: -43}
+        - {x: 72.5, y: -43}
+        - {x: 76.5, y: -36}
+        - {x: 76.5, y: 43}
+    - name: Tatou_anim_3
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 458
+        width: 119
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 46}
+        - {x: -26.5, y: 43}
+        - {x: -47.5, y: 21}
+        - {x: -59.5, y: -16}
+        - {x: -59.5, y: -35}
+        - {x: -44.5, y: -45}
+        - {x: -35.5, y: -46}
+        - {x: 54.5, y: -46}
+        - {x: 59.5, y: -41}
+        - {x: 59.5, y: 16}
+        - {x: 46.5, y: 46}
+    - name: Tatou_anim_4
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 458
+        width: 95
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39.5, y: 46}
+        - {x: -47.5, y: 37}
+        - {x: -47.5, y: -33}
+        - {x: -35.5, y: -46}
+        - {x: 43.5, y: -46}
+        - {x: 47.5, y: -31}
+        - {x: 47.5, y: 31}
+        - {x: 33.5, y: 46}
+    - name: Tatou_anim_5
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 457
+        width: 87
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29.5, y: 44.5}
+        - {x: -42.5, y: 35.5}
+        - {x: -43.5, y: 33.5}
+        - {x: -43.5, y: -33.5}
+        - {x: -24.5, y: -44.5}
+        - {x: 37.5, y: -44.5}
+        - {x: 43.5, y: -33.5}
+        - {x: 43.5, y: 41.5}
+        - {x: 25.5, y: 44.5}
+    - name: Tatou_anim_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 278
+        width: 206
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 57, y: 40}
+        - {x: 55, y: 38}
+        - {x: 51, y: 40}
+        - {x: -29, y: 40}
+        - {x: -103, y: 9}
+        - {x: -103, y: -18}
+        - {x: -94, y: -36}
+        - {x: -85, y: -40}
+        - {x: 48, y: -40}
+        - {x: 103, y: -22}
+        - {x: 103, y: 10}
+        - {x: 71, y: 40}
+    - name: Tatou_anim_7
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 97
+        width: 87
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 44.5}
+        - {x: -43.5, y: 23.5}
+        - {x: -43.5, y: -38.5}
+        - {x: -29.5, y: -44.5}
+        - {x: 39.5, y: -44.5}
+        - {x: 43.5, y: -39.5}
+        - {x: 43.5, y: 22.5}
+        - {x: 35.5, y: 44.5}
+    - name: Tatou_anim_8
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 90
+        width: 95
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42.5, y: 33}
+        - {x: 22.5, y: 45}
+        - {x: -47.5, y: 45}
+        - {x: -47.5, y: -31}
+        - {x: -18.5, y: -45}
+        - {x: 22.5, y: -45}
+        - {x: 28.5, y: -43}
+        - {x: 36.5, y: -36}
+        - {x: 47.5, y: -19}
+        - {x: 47.5, y: 12}
+    - name: Tatou_anim_9
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 91
+        width: 107
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53.5, y: 28}
+        - {x: 37.5, y: 50}
+        - {x: -36.5, y: 50}
+        - {x: -53.5, y: 38}
+        - {x: -53.5, y: -18}
+        - {x: -27.5, y: -50}
+        - {x: 41.5, y: -50}
+        - {x: 47.5, y: -42}
+        - {x: 46.5, y: -32}
+        - {x: 53.5, y: -21}
+    - name: Tatou_anim_10
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 84
+        width: 113
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.5, y: 61.5}
+        - {x: -11.5, y: 61.5}
+        - {x: -45.5, y: 52.5}
+        - {x: -56.5, y: 19.5}
+        - {x: -56.5, y: -53.5}
+        - {x: -50.5, y: -61.5}
+        - {x: -0.5, y: -61.5}
+        - {x: 33.5, y: -48.5}
+        - {x: 56.5, y: 11.5}
+        - {x: 56.5, y: 42.5}
+        - {x: 55.5, y: 45.5}
+    - name: Tatou_anim_11
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 92
+        width: 181
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 84.5, y: 47.5}
+        - {x: -36.5, y: 47.5}
+        - {x: -90.5, y: -6.5}
+        - {x: -90.5, y: -47.5}
+        - {x: 56.5, y: -47.5}
+        - {x: 90.5, y: 0.5}
+        - {x: 90.5, y: 44.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
